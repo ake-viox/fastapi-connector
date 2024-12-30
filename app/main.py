@@ -4,6 +4,8 @@ from fastapi import FastAPI
 
 app = FastAPI()
 
+# Include the Odoo router
+app.include_router(odoo_inbound.router, prefix="/api", tags=["odoo"])
 
 @app.get("/")
 def read_root():
