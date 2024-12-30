@@ -1,6 +1,7 @@
 from fastapi import APIRouter, Request, status
 from pydantic import BaseModel
 from typing import Optional
+from app.core.logging_config import logger
 
 router = APIRouter()
 
@@ -29,6 +30,9 @@ async def receive_stock_picking(data: StockPickingData):
     # Here you can process, store, or forward the data
     # For now, just print or log it
     print("Received stock picking data:", data)
+
+    # Log the received data
+    logger.info(f"Received stock picking data: {data.json()}")
 
     # Return a response to confirm receipt
     return {

@@ -21,8 +21,11 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install --upgrade pip
+          python -m pip install --upgrade pip
           pip install -r requirements.txt
+
+      - name: Set PYTHONPATH
+        run: echo "PYTHONPATH=${PYTHONPATH}:${PWD}" >> $GITHUB_ENV
 
       - name: Run Tests
         run: |
@@ -31,4 +34,3 @@ jobs:
       - name: Build Docker Image (optional)
         run: |
           docker build -t fastapi-connector:latest .
-
